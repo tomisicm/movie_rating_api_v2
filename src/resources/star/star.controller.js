@@ -20,8 +20,7 @@ const searchStars = async (req, res) => {
   const options = {
     sort: 'createdAt',
     page: parseInt(page, 10) || 1,
-    limit: parseInt(perPage, 10) || 10,
-    lean: true
+    limit: parseInt(perPage, 10) || 10
   }
 
   try {
