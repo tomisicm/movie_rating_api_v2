@@ -9,7 +9,9 @@ const searchStars = async (req, res) => {
     query = {
       $or: [
         { 'name.first': { $regex: rq.query, $options: 'i' } },
-        { 'name.last': { $regex: rq.query, $options: 'i' } }
+        { 'name.last': { $regex: rq.query, $options: 'i' } },
+        // eslint-disable-next-line prettier/prettier
+        { 'profession': { $regex: rq.query, $options: 'i' } }
       ]
     }
   }
@@ -26,5 +28,5 @@ const searchStars = async (req, res) => {
 
 export default {
   ...crudControllers(Star),
-  searchStars: searchStars
+  getMeny: searchStars
 }

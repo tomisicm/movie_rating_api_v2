@@ -25,9 +25,9 @@ const starSchema = new mongoose.Schema(
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'user',
       required: true
-    }
+    },
+    profession: [String]
   },
-
   {
     toObject: {
       virtuals: true,

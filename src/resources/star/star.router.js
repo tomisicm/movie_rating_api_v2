@@ -5,7 +5,7 @@ const router = Router()
 
 router
   .route('/')
-  .get(controllers.searchStars)
+  .get(controllers.getMeny)
   .post(controllers.createOne)
 
 router
