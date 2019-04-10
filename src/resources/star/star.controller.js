@@ -4,6 +4,8 @@ import { _ } from 'lodash'
 
 const searchStars = async (req, res) => {
   let rq = req.query
+  const { perPage, page } = req.query
+
   let query = null
   if (!_.isEmpty(rq)) {
     query = {
@@ -15,9 +17,15 @@ const searchStars = async (req, res) => {
       ]
     }
   }
+  const options = {
+    sort: 'createdAt',
+    page: parseInt(page, 10) || 1,
+    limit: parseInt(perPage, 10) || 10,
+    lean: true
+  }
 
   try {
-    const docs = await Star.find(query).exec()
+    const docs = await Star.paginate(query, options)
 
     res.status(200).json({ data: docs })
   } catch (e) {
