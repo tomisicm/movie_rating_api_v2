@@ -10,7 +10,6 @@ import { signup, signin, protect } from './utils/auth'
 import { connect } from './utils/db'
 
 import userRouter from './resources/user/user.router'
-import threadRouter from './resources/thread/thread.router'
 import listRouter from './resources/list/list.router'
 import genreRouter from './resources/genre/genre.router'
 import starRouter from './resources/star/star.router'
@@ -36,7 +35,6 @@ app.post('/signin', signin)
 app.use('/api', protect)
 
 app.use('/api/user', userRouter)
-app.use('/api/thread', threadRouter)
 app.use('/api/list', listRouter)
 app.use('/api/genre', genreRouter)
 app.use('/api/star', starRouter)
