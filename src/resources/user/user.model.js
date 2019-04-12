@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import mongoosePaginate from 'mongoose-paginate'
 import bcrypt from 'bcrypt'
 import Joi from 'joi'
 
@@ -75,11 +76,11 @@ userSchema.methods.comparePassword = function(password) {
   })
 }
 
-// why the fuck does this not work?
-// userSchema.index({ name: 1, email: 1 }, { unique: true })
+userSchema.plugin(mongoosePaginate)
+
+/* userSchema.index({ name: 1, email: 1 }, { unique: true }) */
 
 function validateSignup(user) {
-  // Joi schema
   const schema = {
     name: Joi.string()
       .trim()

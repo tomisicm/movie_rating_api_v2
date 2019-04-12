@@ -2,6 +2,7 @@ import { Router } from 'express'
 import {
   me,
   updateMe,
+  getMany,
   uploadAvatar,
   setAvatar,
   deleteAvatar,
@@ -12,6 +13,7 @@ const router = Router()
 
 router.get('/', me)
 router.put('/', updateMe)
+router.get('/all', getMany)
 
 router
   .post(

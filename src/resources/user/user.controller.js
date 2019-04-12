@@ -30,6 +30,21 @@ export const updateMe = async (req, res) => {
   }
 }
 
+export const getMany = async (req, res) => {
+  const { perPage, page } = req.query
+  const options = {
+    page: parseInt(page, 10) || 1,
+    limit: parseInt(perPage, 10) || 10
+  }
+  try {
+    const docs = await User.paginate({}, options)
+    res.status(200).json({ data: docs })
+  } catch (e) {
+    console.error(e)
+    res.status(400).end()
+  }
+}
+
 // this middleware might be in seperate file
 export const uploadAvatar = multer({
   limits: {

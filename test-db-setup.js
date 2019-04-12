@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 import cuid from 'cuid'
 import _ from 'lodash'
-import { Thread } from './src/resources/thread/thread.model'
 import { List } from './src/resources/list/list.model'
 import { User } from './src/resources/user/user.model'
 
-const models = { User, List, Thread }
+// fix this shite later
+const models = { User, List }
 
 const url =
   process.env.MONGODB_URI ||
