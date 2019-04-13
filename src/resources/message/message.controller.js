@@ -1,13 +1,40 @@
 import { Message } from './message.model'
 // import { User } from './../user/user.model'
 
-const getAllMessages = async (req, res) => {
+const getAllMessagesSentByMeOrSentToMe = async (req, res) => {
   try {
     const docs = await Message.find({
-      sender: req.user._id,
-      recievers: {
-        $in: ['5c92cf7f89134046ad41fa81']
-      }
+      $or: [{ sender: req.user._id }, { recipiants: { $in: [req.user._id] } }]
+    })
+      .sort({ updatedAt: -1 })
+      .limit(20)
+
+    res.status(200).json({ data: docs })
+  } catch (e) {
+    console.error(e)
+    res.status(400).end()
+  }
+}
+
+const getAllMessagesForConvo = async (req, res) => {
+  console.log(req.params.id + ' params ')
+  console.log(req.user._id + ' user ')
+  try {
+    const docs = await Message.find({
+      $or: [
+        {
+          $and: [
+            { sender: req.user._id },
+            { recipiants: { $in: [req.params.id] } }
+          ]
+        },
+        {
+          $and: [
+            { sender: req.params.id },
+            { recipiants: { $in: [req.user._id] } }
+          ]
+        }
+      ]
     })
       .sort({ updatedAt: -1 })
       .limit(20)
@@ -32,6 +59,7 @@ export const createOne = async (req, res) => {
 }
 
 export default {
-  getAllMessages: getAllMessages,
-  createOne: createOne
+  getAllMessagesSentByMeOrSentToMe: getAllMessagesSentByMeOrSentToMe,
+  createOne: createOne,
+  getAllMessagesForConvo: getAllMessagesForConvo
 }
