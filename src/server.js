@@ -16,6 +16,7 @@ import starRouter from './resources/star/star.router'
 import movieRouter from './resources/movie/movie.router'
 import commentRouter from './resources/comment/comment.router'
 import ratingRouter from './resources/rating/rating.router'
+import messagesRouter from './resources/message/message.router'
 
 Joi.objectId = require('joi-objectid')(Joi)
 
@@ -41,6 +42,7 @@ app.use('/api/star', starRouter)
 app.use('/api/movie', movieRouter)
 app.use('/api/comment', commentRouter)
 app.use('/api/rating', ratingRouter)
+app.use('/api/messaging', messagesRouter)
 
 export const start = async () => {
   try {
