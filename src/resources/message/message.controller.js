@@ -6,6 +6,8 @@ const getAllMessagesSentByMeOrSentToMe = async (req, res) => {
     const docs = await Message.find({
       $or: [{ sender: req.user._id }, { recipiants: { $in: [req.user._id] } }]
     })
+      .populate('sender')
+      .populate('recipiants')
       .sort({ updatedAt: -1 })
       .limit(20)
 
@@ -36,6 +38,8 @@ const getAllMessagesForConvo = async (req, res) => {
         }
       ]
     })
+      .populate('sender')
+      .populate('recipiants')
       .sort({ updatedAt: -1 })
       .limit(20)
 
