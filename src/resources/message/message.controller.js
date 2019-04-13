@@ -2,12 +2,9 @@ import { Message } from './message.model'
 // import { User } from './../user/user.model'
 
 const getAllMessages = async (req, res) => {
-  /* 
-  user1 = User.
-  */
-
   try {
     const docs = await Message.find({
+      sender: req.user._id,
       recievers: {
         $in: ['5c92cf7f89134046ad41fa81']
       }
