@@ -1,4 +1,6 @@
 import express from 'express'
+import http from 'http'
+import socketio from 'socket.io'
 import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import config from './config'
@@ -21,6 +23,8 @@ import messagesRouter from './resources/message/message.router'
 Joi.objectId = require('joi-objectid')(Joi)
 
 export const app = express()
+const server = http.createServer(app)
+const io = socketio(server)
 
 app.disable('x-powered-by')
 
@@ -44,13 +48,19 @@ app.use('/api/comment', commentRouter)
 app.use('/api/rating', ratingRouter)
 app.use('/api/messaging', messagesRouter)
 
-export const start = async () => {
+io.on('connection', () => {
+  console.log('New WS connection.')
+})
+
+const start = async () => {
   try {
     await connect()
-    app.listen(config.port, () => {
+    server.listen(config.port, () => {
       console.log(`REST API on http://localhost:${config.port}/api`)
     })
   } catch (e) {
     console.error(e)
   }
 }
+
+export { start, io }
