@@ -49,18 +49,18 @@ app.use('/api/rating', ratingRouter)
 app.use('/api/messaging', messagesRouter)
 
 io.on('connection', function(socket) {
-  // user signed in
   socket.on('user_signedin_sucess', function(data) {
-    console.log('[data is user id] Sucessfully logged in user with id', data)
-    socket.join('/users')
+    // console.log('[data is user id] Sucessfully logged in user with id', data)
+    // socket.join('/users')
   })
 
   socket.on('user_message', function(data) {
-    console.log('[data is recipiant id] message sent', data)
+    // console.log('[data is recipiant id] message sent', data)
+    socket.emit('new_message', data)
   })
 
   socket.on('disconnect', function() {
-    // handle when user disconnects
+    // handle diconnect
   })
 })
 
