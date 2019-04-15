@@ -49,15 +49,13 @@ app.use('/api/rating', ratingRouter)
 app.use('/api/messaging', messagesRouter)
 
 io.on('connection', function(socket) {
-  console.log(socket)
+  // console.log(socket)
   socket.join('/users')
 
-  /* 
-    // this shit should be used for 
-  socket.on('private message', function(from, msg) {
-    console.log('I received a private message by ', from, ' saying ', msg)
-  }) 
-  */
+  // user signed in
+  socket.on('user_signedin_sucess', function(data) {
+    console.log(' - - - Sucessfully logged in user with id', data)
+  })
 
   socket.on('disconnect', function() {
     // handle when user disconnects

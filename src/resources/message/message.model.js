@@ -12,7 +12,15 @@ const messageSchema = new mongoose.Schema(
         ref: 'user',
         required: true
       }
+      /* seen: {
+        //  type: Boolean,
+        //  defaultL false  
+        } */
     ],
+    /* isGroupMessage: {
+      type: Boolean,
+      default: false
+    }, */
     sender: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
