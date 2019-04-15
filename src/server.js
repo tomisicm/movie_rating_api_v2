@@ -49,12 +49,14 @@ app.use('/api/rating', ratingRouter)
 app.use('/api/messaging', messagesRouter)
 
 io.on('connection', function(socket) {
-  // console.log(socket)
-  socket.join('/users')
-
   // user signed in
   socket.on('user_signedin_sucess', function(data) {
     console.log(' - - - Sucessfully logged in user with id', data)
+    socket.join('/users')
+  })
+
+  socket.on('user_message', function(data) {
+    console.log(' - - - message sent', data)
   })
 
   socket.on('disconnect', function() {
