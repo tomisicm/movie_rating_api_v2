@@ -51,12 +51,12 @@ app.use('/api/messaging', messagesRouter)
 io.on('connection', function(socket) {
   // user signed in
   socket.on('user_signedin_sucess', function(data) {
-    console.log(' - - - Sucessfully logged in user with id', data)
+    console.log('[data is user id] Sucessfully logged in user with id', data)
     socket.join('/users')
   })
 
   socket.on('user_message', function(data) {
-    console.log(' - - - message sent', data)
+    console.log('[data is recipiant id] message sent', data)
   })
 
   socket.on('disconnect', function() {
