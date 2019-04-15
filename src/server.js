@@ -48,8 +48,20 @@ app.use('/api/comment', commentRouter)
 app.use('/api/rating', ratingRouter)
 app.use('/api/messaging', messagesRouter)
 
-io.on('connection', () => {
-  console.log('New WS connection.')
+io.on('connection', function(socket) {
+  console.log(socket)
+  socket.join('/users')
+
+  /* 
+    // this shit should be used for 
+  socket.on('private message', function(from, msg) {
+    console.log('I received a private message by ', from, ' saying ', msg)
+  }) 
+  */
+
+  socket.on('disconnect', function() {
+    // handle when user disconnects
+  })
 })
 
 const start = async () => {
