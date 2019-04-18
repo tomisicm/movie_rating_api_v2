@@ -57,7 +57,7 @@ const getAllMessagesForConvo = async (req, res) => {
     })
       .populate('sender')
       .populate('recipiants')
-      .sort({ updatedAt: -1 })
+      .sort({ createdAt: -1 })
       .limit(20)
 
     res.status(200).json({ data: docs })
