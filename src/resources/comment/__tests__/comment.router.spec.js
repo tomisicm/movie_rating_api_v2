@@ -8,7 +8,7 @@ describe('comment router', () => {
       { path: '/:id', method: 'delete' },
       { path: '/:id', method: 'put' },
       { path: '/', method: 'post' },
-      { path: '/movie/:movieId', method: 'get' }
+      { path: '/item/:itemId', method: 'get' }
     ]
 
     routes.forEach(route => {
