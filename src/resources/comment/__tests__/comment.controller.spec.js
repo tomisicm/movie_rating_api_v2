@@ -9,7 +9,7 @@ describe('comment controllers', () => {
       'createOne',
       'removeOne',
       'updateOne',
-      'getCommentsByMovieId'
+      'getCommentsByItemId'
     ]
 
     crudMethods.forEach(name =>

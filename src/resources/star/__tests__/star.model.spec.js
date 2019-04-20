@@ -34,7 +34,10 @@ describe('Item model', () => {
 
     test('dateOfBirth', () => {
       const dateOfBirth = Star.schema.obj.dateOfBirth
-      expect(dateOfBirth).toBe(Date)
+      expect(dateOfBirth).toEqual({
+        type: Date,
+        default: null
+      })
     })
   })
 })
