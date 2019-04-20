@@ -33,7 +33,32 @@ const searchStars = async (req, res) => {
   }
 }
 
+// figure out if i can return back to the generic controller (crud)
+export const updateStar = async (req, res) => {
+  try {
+    const updatedDoc = await Star.findOneAndUpdate(
+      {
+        _id: req.params.id
+      },
+      req.body,
+      { new: true }
+    )
+      .lean()
+      .exec()
+
+    if (!updatedDoc) {
+      return res.status(400).end()
+    }
+
+    res.status(200).json({ data: updatedDoc })
+  } catch (e) {
+    console.error(e)
+    res.status(400).end()
+  }
+}
+
 export default {
   ...crudControllers(Star),
-  getMeny: searchStars
+  getMeny: searchStars,
+  updateOne: updateStar
 }

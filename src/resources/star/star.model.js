@@ -20,7 +20,10 @@ const starSchema = new mongoose.Schema(
         maxlength: 50
       }
     },
-    dateOfBirth: Date,
+    dateOfBirth: {
+      type: Date,
+      default: null
+    },
     createdBy: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'user',

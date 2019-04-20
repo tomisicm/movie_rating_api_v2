@@ -69,6 +69,39 @@ export const updateOne = model => async (req, res) => {
   }
 }
 
+/* 
+: REFACTOR LATER :
+
+there is a need for two essentially same functions.
+i have decided that further parametrization of these functions is noisy and the 
+splitting is offering more flexibility further
+
+export const updateOneCreatedByMe = model => async (req, res) => {
+  try {
+    const updatedDoc = await model
+      .findOneAndUpdate(
+        {
+          createdBy: req.user._id,
+          _id: req.params.id
+        },
+        req.body,
+        { new: true }
+      )
+      .lean()
+      .exec()
+
+    if (!updatedDoc) {
+      return res.status(400).end()
+    }
+
+    res.status(200).json({ data: updatedDoc })
+  } catch (e) {
+    console.error(e)
+    res.status(400).end()
+  }
+} 
+*/
+
 export const removeOne = model => async (req, res) => {
   try {
     const removed = await model.findOneAndRemove({
