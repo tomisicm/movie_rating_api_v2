@@ -12,7 +12,7 @@ const ratingSchema = new mongoose.Schema(
       type: String,
       // required: true,
       enum: ['film', 'book', 'video'],
-      default: 'open'
+      default: 'film'
     },
     value: {
       type: Number,

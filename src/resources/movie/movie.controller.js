@@ -17,14 +17,27 @@ const createMovie = async (req, res) => {
   const createdBy = req.user._id
 
   try {
+    // since there is no rating field on Movie Schema, req.body.rating is silently ignored
+    // gift of mongo
     const movie = await Movie.create({ ...req.body, createdBy })
 
-    // since there is no rating field on Movie Schema it is silently ignored
     await Rating.create({
       item: movie.id,
       value: req.body.rating,
       createdBy: createdBy
     })
+
+    /* TO DO 
+    there is probably better way to handle these types of operations
+    after rating is created increment by one
+    
+    await Movie.findByIdAndUpdate(
+      { _id: movie.id },
+      {
+        $inc: { ratingCounter: +1 }
+      }
+    )
+    */
 
     res.status(201).json({ data: movie })
   } catch (e) {

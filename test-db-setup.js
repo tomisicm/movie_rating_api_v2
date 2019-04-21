@@ -3,9 +3,13 @@ import cuid from 'cuid'
 import _ from 'lodash'
 import { List } from './src/resources/list/list.model'
 import { User } from './src/resources/user/user.model'
+import { Genre } from './src/resources/genre/genre.model'
+import { Star } from './src/resources/star/star.model'
+import { Movie } from './src/resources/movie/movie.model'
+import { Rating } from './src/resources/rating/rating.model'
 
 // fix this shite later
-const models = { User, List }
+const models = { User, List, Genre, Star, Movie, Rating }
 
 const url =
   process.env.MONGODB_URI ||
