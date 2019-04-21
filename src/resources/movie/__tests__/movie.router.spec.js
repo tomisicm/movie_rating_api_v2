@@ -5,6 +5,7 @@ describe('movie router', () => {
     const routes = [
       { path: '/', method: 'get' },
       { path: '/:id', method: 'get' },
+      { path: '/all', method: 'get' },
       { path: '/:id', method: 'delete' },
       { path: '/:id', method: 'put' },
       { path: '/', method: 'post' }
