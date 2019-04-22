@@ -2,13 +2,18 @@
 
 Forum API
 
-### Prerequisites
+# Project Description
 
-In order to run this api you need MongoDB.
+Simple forum API with authorization with commenting and rating system. Users have Private Messaging system. API can be further expanded with roles and premissions.
 
-## Getting Started
+## Technology 
 
-Express + Mongoo with JWT authorization. Clear separation of Resources, Controllers Viewers. Can be further expanded to satify roles and premissions.
+- NodeJS
+- ExpressJS 
+- MongooDB
+- JWT authorization
+- Jest (for testing)
+- Webpack - Bundler
 
 ## Project setup
 ```
