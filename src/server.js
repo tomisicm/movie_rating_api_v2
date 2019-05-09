@@ -48,6 +48,7 @@ app.use('/api/comment', commentRouter)
 app.use('/api/rating', ratingRouter)
 app.use('/api/messaging', messagesRouter)
 
+// TODO refactor this sh1te later
 io.on('connection', function(socket) {
   socket.on('user_signedin_sucess', function(data) {
     // console.log('[data is user id] Sucessfully logged in user with id', data)
